@@ -1,0 +1,241 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hemanth R - Interactive Portfolio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    header p {
+      margin: 0.5rem 0 0;
+      font-size: 1.2rem;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    section {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    section:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+    section h2 {
+      color: #2575fc;
+      border-bottom: 2px solid #2575fc;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .image-placeholder {
+      width: 100%;
+      height: 200px;
+      background: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .image-placeholder span {
+      color: #aaa;
+      font-size: 1.2rem;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #2575fc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #2575fc;
+      color: white;
+      margin-top: 2rem;
+    }
+    button {
+      background: #2575fc;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #1a5bbd;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .modal-content {
+      background: white;
+      margin: 10% auto;
+      padding: 2rem;
+      border-radius: 8px;
+      width: 80%;
+      max-width: 600px;
+      position: relative;
+    }
+    .close {
+      position: absolute;
+      right: 10px;
+      top: 5px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>HEMANTH R</h1>
+    <p>Bangalore, India | <a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn</a></p>
+  </header>
+  <div class="container">
+    <section onclick="openModal('about')">
+      <h2>About Me</h2>
+      <div class="image-placeholder"><span>Add Image Here</span></div>
+      <p>A proactive and adaptable Engineering graduate with strong academic and practical experience in operations, maintenance, and information technology.</p>
+    </section>
+    <section onclick="openModal('experience')">
+      <h2>Experience</h2>
+      <div class="image-placeholder"><span>Add Image Here</span></div>
+      <p>Intern at Take It Smart Pvt Ltd, developed home automation systems using Arduino and IoT principles.</p>
+    </section>
+    <section onclick="openModal('projects')">
+      <h2>Projects</h2>
+      <div class="image-placeholder"><span>Add Image Here</span></div>
+      <p>CI/CD Pipeline Implementation, Currency Detection for Differently Abled People.</p>
+    </section>
+    <section onclick="openModal('skills')">
+      <h2>Skills</h2>
+      <div class="image-placeholder"><span>Add Image Here</span></div>
+      <p>MySQL, AWS, Python, Git, GitHub, Project Management.</p>
+    </section>
+    <section onclick="openModal('certifications')">
+      <h2>Certifications</h2>
+      <div class="image-placeholder"><span>Add Image Here</span></div>
+      <p>Cloud Computing (IBM), SQL Basic (HackerRank).</p>
+    </section>
+  </div>
+  <footer>
+    <p>&copy; 2023 Hemanth R. All rights reserved.</p>
+  </footer>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title"></h2>
+      <div id="modal-body"></div>
+      <button onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+
+    function openModal(section) {
+      modal.style.display = 'block';
+      switch (section) {
+        case 'about':
+          modalTitle.textContent = 'About Me';
+          modalBody.innerHTML = `
+            <p>A proactive and adaptable Engineering graduate with strong academic and practical experience in operations, maintenance, and information technology. Demonstrated ability to lead projects, engage in deep discussions, and contribute to business initiatives with a commitment to safety, health, environment, and quality.</p>
+          `;
+          break;
+        case 'experience':
+          modalTitle.textContent = 'Experience';
+          modalBody.innerHTML = `
+            <ul>
+              <li><strong>Take It Smart Pvt Ltd, Bangalore | Intern</strong> (August 2022 - September 2022)</li>
+              <li>Developed and implemented a robust home automation system using Arduino.</li>
+              <li>Gained hands-on experience in embedded systems and IoT principles.</li>
+            </ul>
+          `;
+          break;
+        case 'projects':
+          modalTitle.textContent = 'Projects';
+          modalBody.innerHTML = `
+            <ul>
+              <li><strong>CI/CD Pipeline Implementation</strong> (May 2024)</li>
+              <li>Designed and implemented a CI/CD pipeline using Jenkins, Docker, and Terraform.</li>
+              <li><strong>Currency Detection for Differently Abled People</strong> (September 2022 - June 2023)</li>
+              <li>Engineered a system to recognize Indian currency values with 80% accuracy.</li>
+            </ul>
+          `;
+          break;
+        case 'skills':
+          modalTitle.textContent = 'Skills';
+          modalBody.innerHTML = `
+            <ul>
+              <li><strong>Technologies:</strong> MySQL, AWS, Python</li>
+              <li><strong>Programming & Tools:</strong> Git, GitHub, Python, SQL</li>
+              <li><strong>Project Management:</strong> Ability to plan and manage projects, collaborate in teams.</li>
+            </ul>
+          `;
+          break;
+        case 'certifications':
+          modalTitle.textContent = 'Certifications';
+          modalBody.innerHTML = `
+            <ul>
+              <li>Introduction to Cloud Computing (IBM) - March 2023</li>
+              <li>Foundations: Data, Data, Everywhere (Google) - October 2022</li>
+              <li>SQL Basic Certificate (HackerRank) - June 2022</li>
+            </ul>
+          `;
+          break;
+      }
+    }
+
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
+```
